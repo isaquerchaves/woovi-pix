@@ -2,7 +2,7 @@
 import { useContext, useState } from "react";
 import Header from "../components/header/header";
 import { Input } from "../components/input/input";
-import { ButtonContainer, HomeContainer } from "./home.style";
+import { ButtonContainer, Container } from "./home.style";
 import { ArrowRight } from 'lucide-react';
 import { ValuePixContext } from "../context/value";
 import { useRouter } from "next/navigation";
@@ -24,7 +24,7 @@ const handleButtonClick = () => {
 };
 
   return (
-    <HomeContainer>
+    <Container>
     <div>
         <Header title="Qual é o valor da transferência?" />
         <Input
@@ -37,6 +37,6 @@ const handleButtonClick = () => {
     <ButtonContainer onClick={handleButtonClick}>
         <ArrowRight size={25} />
     </ButtonContainer>
-</HomeContainer>
+</Container>
   );
 }

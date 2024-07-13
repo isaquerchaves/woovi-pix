@@ -1,7 +1,7 @@
 "use client"
 import styled from "styled-components"
 
-export const HomeContainer = styled.div`
+export const Container = styled.div`
     padding: 2rem;
     height: 100vh;
     position: relative;
