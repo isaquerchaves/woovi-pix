@@ -6,6 +6,7 @@ import { ButtonContainer, Container } from "./home.style";
 import { ArrowRight } from 'lucide-react';
 import { ValuePixContext } from "../context/value";
 import { useRouter } from "next/navigation";
+import Footer from "../components/footer/Footer";
 
 export default function Home() {
   const router = useRouter();
@@ -33,6 +34,8 @@ const handleButtonClick = () => {
             onChange={handleChange}
         />
     </div>
+    
+    <Footer />
 
     <ButtonContainer onClick={handleButtonClick}>
         <ArrowRight size={25} />
