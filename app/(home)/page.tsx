@@ -34,10 +34,6 @@ const handleButtonClick = () => {
         />
     </div>
 
-    <div>
-        <p>Valor atual no contexto: {value}</p>
-    </div>
-
     <ButtonContainer onClick={handleButtonClick}>
         <ArrowRight size={25} />
     </ButtonContainer>
