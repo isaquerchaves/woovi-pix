@@ -9,6 +9,7 @@ export const HeaderContent = styled.div`
   justify-content: center;
   gap: 1rem;
   margin-bottom: 1rem;
+  text-align: center;
 
   & p {
     font-weight: 800;
