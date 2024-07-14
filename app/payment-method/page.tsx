@@ -6,14 +6,17 @@ import { ButtonContainer, Container } from "../(home)/home.style";
 import { ArrowRight } from "lucide-react";
 import CardValue from "../components/card-value/CardValue";
 import Footer from "../components/footer/Footer";
+import { useRouter } from "next/navigation";
 
 const PaymentMethod = () => {
+  const router = useRouter();
   const { value, installmentCount } = useContext(ValuePixContext);
 
   const installments = [1, 2, 3, 4, 5, 6, 7];
 
   const handleButtonClick = () => {
     console.log("Quantidade de parcelas selecionada:", installmentCount);
+    router.push(`/payment`);
   };
 
   return (
