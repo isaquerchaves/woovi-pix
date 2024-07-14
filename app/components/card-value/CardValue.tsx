@@ -1,5 +1,8 @@
 import { useContext, useState } from "react";
-import { calculateCashback, formatCurrency } from "@/app/helpers/value";
+import {
+  calculateCashback,
+  calculateInstallmentWithInterest,
+} from "@/app/helpers/value";
 import {
   SingleInstallmentContainer,
   CardsContainer,
@@ -14,18 +17,6 @@ interface ValueProps {
   value: number;
   installments: number[];
 }
-
-// Função para calcular o valor da parcela com juros
-const calculateInstallmentWithInterest = (
-  value: number,
-  interestRate: number,
-  installmentCount: number
-) => {
-  const monthlyRate = interestRate / 100;
-  const installmentValue =
-    (value * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -installmentCount));
-  return installmentValue;
-};
 
 const CardValue = ({ value, installments }: ValueProps) => {
   const [selectedInstallment, setSelectedInstallment] = useState<number | null>(
