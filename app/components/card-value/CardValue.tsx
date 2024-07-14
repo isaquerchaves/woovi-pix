@@ -1,20 +1,41 @@
+import { calculateCashback, formatCurrency } from "@/app/helpers/value";
 import { Card } from "./CardValue.style";
+import Full from "./components/Full";
+import Installment from "./components/Installment";
 
 interface ValueProps {
-    value: number;
+  value: number;
+  installments: number[];
 }
 
-const CardValue = ({value}: ValueProps) => {
-    return ( 
-        <Card>
-            <div>
-                <p className="title"><span>1x</span> R$ {value}</p>
-                <p className="sub-title">Ganhe <span>3%</span> de Cashback</p>
-            </div>
+const CardValue = ({ value, installments }: ValueProps) => {
+  return (
+    <>
+      {installments.map((installment, index) => {
+        const installmentValue = value / installment;
+        const cashbackValue = calculateCashback(value);
+        return (
+          <Card>
+            {installment === 1 ? (
+              <Full
+                index={index}
+                installment={installment}
+                installmentValue={installmentValue}
+                cashbackValue={cashbackValue}
+              />
+            ) : (
+              <Installment
+                index={index}
+                installment={installment}
+                installmentValue={installmentValue}
+                value={value}
+              />
+            )}
+          </Card>
+        );
+      })}
+    </>
+  );
+};
 
-            <p className="cashback-value">🤑 <span>&nbsp;R$ 300,00&nbsp;</span>de volta no seu Pix na hora</p>
-        </Card>
-     );
-}
- 
 export default CardValue;
