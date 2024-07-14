@@ -8,9 +8,13 @@ import CardValue from "../components/card-value/CardValue";
 import Footer from "../components/footer/Footer";
 
 const PaymentMethod = () => {
-  const { value } = useContext(ValuePixContext);
+  const { value, installmentCount } = useContext(ValuePixContext);
 
   const installments = [1, 2, 3, 4, 5, 6, 7];
+
+  const handleButtonClick = () => {
+    console.log("Quantidade de parcelas selecionada:", installmentCount);
+  };
 
   return (
     <Container>
@@ -22,7 +26,7 @@ const PaymentMethod = () => {
 
       <Footer />
 
-      <ButtonContainer>
+      <ButtonContainer onClick={handleButtonClick}>
         <ArrowRight size={25} />
       </ButtonContainer>
     </Container>
