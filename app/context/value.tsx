@@ -12,7 +12,7 @@ interface ValuePix {
 export const ValuePixContext = createContext<ValuePix>({
   value: 0,
   installmentCount: 0,
-  interestRate: 1.99, // Valor padrão da taxa de juros
+  interestRate: 0.005, // Valor padrão da taxa de juros
   updateValue: (newValue: number) => {},
   updateInstallmentCount: (count: number) => {},
 });
@@ -20,7 +20,7 @@ export const ValuePixContext = createContext<ValuePix>({
 export const ValuePixProvider = ({ children }: { children: ReactNode }) => {
   const [value, setValue] = useState<number>(0);
   const [installmentCount, setInstallmentCount] = useState<number>(0);
-  const interestRate = 1.99; // Definição da taxa de juros
+  const interestRate = 0.005; // Definição da taxa de juros
 
   const updateValue = (newValue: number) => {
     setValue(newValue);

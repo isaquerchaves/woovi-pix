@@ -14,8 +14,12 @@ export const calculateInstallmentWithInterest = (
   interestRate: number,
   installmentCount: number
 ) => {
-  const monthlyRate = interestRate / 100;
-  const installmentValue =
-    (value * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -installmentCount));
-  return installmentValue;
+  const installmentValue = value / installmentCount + value * interestRate;
+  const installmentValueDiscount3 =
+    value / installmentCount + value * (interestRate - interestRate * 0.03);
+  if (installmentCount === 4) {
+    return Number(installmentValueDiscount3.toFixed(2));
+  } else {
+    return Number(installmentValue.toFixed(2));
+  }
 };
