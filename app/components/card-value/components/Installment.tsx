@@ -18,7 +18,8 @@ const Installment = ({
       <div key={index}>
         <div>
           <p className="title">
-            <span>{installment}x</span> {formatCurrency(installmentValue)}
+            <span>{installment}x</span>{" "}
+            {formatCurrency(installmentValue.toFixed(2))}
           </p>
           <p>Total: {formatCurrency(value)}</p>
         </div>
