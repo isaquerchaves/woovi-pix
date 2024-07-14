@@ -1,24 +1,22 @@
 import { useContext } from "react";
-import { formatCurrency } from "@/app/helpers/value";
+import {
+  calculateInstallmentWithInterest,
+  formatCurrency,
+} from "@/app/helpers/value";
 import { ValuePixContext } from "@/app/context/value";
 
 interface FullProps {
   index: any;
   installment: any;
   installmentValue: any;
-  value: any;
 }
 
 const InstallmentLessInterest = ({
   index,
   installment,
   installmentValue,
-  value,
 }: FullProps) => {
-  const discountRate = 1.9283; // Taxa de juros com desconto de 3%
-
-  // Calcula o total com a taxa de juros com desconto de -3%
-  const totalValue = value * (1 + discountRate / 100);
+  const { value, installmentCount, interestRate } = useContext(ValuePixContext);
 
   return (
     <div className="card-full">
@@ -27,7 +25,16 @@ const InstallmentLessInterest = ({
           <p className="title">
             <span>{installment}x</span> {formatCurrency(installmentValue)}
           </p>
-          <p>Total: {formatCurrency(totalValue)}</p>
+          <p>
+            Total:{" "}
+            {formatCurrency(
+              calculateInstallmentWithInterest(
+                value,
+                interestRate,
+                installmentCount
+              ) * installmentCount
+            )}
+          </p>
         </div>
 
         <p className="cashback-value">

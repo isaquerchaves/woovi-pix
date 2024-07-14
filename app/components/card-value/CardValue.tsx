@@ -89,7 +89,6 @@ const CardValue = ({ value, installments }: ValueProps) => {
                     index={index}
                     installment={installment}
                     installmentValue={installmentValue}
-                    value={value}
                   />
                 ) : (
                   // Renderiza as demais parcelas
