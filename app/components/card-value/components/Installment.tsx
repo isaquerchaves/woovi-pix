@@ -13,6 +13,8 @@ const Installment = ({
   installmentValue,
   value,
 }: InstallmentProps) => {
+  const totalWithInterest = installmentValue * installment;
+
   return (
     <>
       <div key={index}>
@@ -21,7 +23,7 @@ const Installment = ({
             <span>{installment}x</span>{" "}
             {formatCurrency(installmentValue.toFixed(2))}
           </p>
-          <p>Total: {formatCurrency(value)}</p>
+          <p>Total: {formatCurrency(totalWithInterest)}</p>
         </div>
       </div>
     </>

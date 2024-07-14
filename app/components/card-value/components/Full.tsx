@@ -14,7 +14,7 @@ const Full = ({
   cashbackValue,
 }: FullProps) => {
   return (
-    <>
+    <div className="card-full">
       <div key={index}>
         <div>
           <p className="title">
@@ -31,7 +31,7 @@ const Full = ({
           de volta no seu Pix na hora
         </p>
       </div>
-    </>
+    </div>
   );
 };
 
