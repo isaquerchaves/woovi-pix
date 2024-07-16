@@ -1,5 +1,5 @@
 "use client";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Header from "../components/header/header";
 import { ValuePixContext } from "../context/value";
 import { ButtonContainer, Container } from "../(home)/home.style";
@@ -11,6 +11,12 @@ import { useRouter } from "next/navigation";
 const PaymentMethod = () => {
   const router = useRouter();
   const { value, installmentCount } = useContext(ValuePixContext);
+
+  useEffect(() => {
+    if (!value) {
+      router.push(`/`);
+    }
+  }, [value, router]);
 
   const installments = [1, 2, 3, 4, 5, 6, 7];
 

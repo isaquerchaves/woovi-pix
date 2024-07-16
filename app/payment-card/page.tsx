@@ -22,6 +22,13 @@ const PaymentCard = () => {
     { installment: number; value: number }[]
   >([]);
 
+    // Verificar se tem um valor
+    useEffect(() => {
+      if (!value) {
+        router.push(`/`);
+      }
+    }, [value, router])
+
   const [cpf, setCpf] = useState("");
   const [cardNumber, setCardNumber] = useState("");
   const [expiryDate, setExpiryDate] = useState("");

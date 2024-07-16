@@ -19,6 +19,13 @@ const Payment = () => {
     useContext(ValuePixContext);
   const [formattedDate, setFormattedDate] = useState("");
 
+  // Verificar se tem um valor
+  useEffect(() => {
+    if (!value) {
+      router.push(`/`);
+    }
+  }, [value, router]);
+
   // Calculo com o valor das parcelas
   const valueCalculated = calculateInstallmentWithInterest(
     value,
