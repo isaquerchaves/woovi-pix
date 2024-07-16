@@ -9,28 +9,37 @@ import {
   formatCurrency,
 } from "../helpers/value";
 import QRCode from "react-qr-code";
-import { ArrowRight, ChevronUp, Files } from "lucide-react";
+import { ArrowRight, ChevronUp, Circle, Files } from "lucide-react";
 import { PaymentContainer } from "./payment.style";
 import Footer from "../components/footer/Footer";
 
 const Payment = () => {
   const router = useRouter();
-  const { value, installmentCount, interestRate } = useContext(ValuePixContext);
+  const { value, installmentCount, interestRate, updateRemainingValue } =
+    useContext(ValuePixContext);
   const [formattedDate, setFormattedDate] = useState("");
-  const [installmentsInfo, setInstallmentsInfo] = useState<
-    { installment: number; value: number }[]
-  >([]);
 
   // Calculo com o valor das parcelas
-  const valueCalculated = formatCurrency(
-    calculateInstallmentWithInterest(value, interestRate, installmentCount)
+  const valueCalculated = calculateInstallmentWithInterest(
+    value,
+    interestRate,
+    installmentCount
   );
 
   // Calculo com valor total
-  const valueTotalCalculated = formatCurrency(
+  const valueTotalCalculated =
     calculateInstallmentWithInterest(value, interestRate, installmentCount) *
-      installmentCount
-  );
+    installmentCount;
+
+  // Calculo com valor restante
+  const remainingValue = valueTotalCalculated - valueCalculated;
+  // Calculo do valor da primeira entrada e do restante
+  const firstInstallmentValue = value / installmentCount;
+
+  // Salvar remainingValue no contexto
+  useEffect(() => {
+    updateRemainingValue(remainingValue);
+  }, [remainingValue, updateRemainingValue]);
 
   // Função para formatar a data no formato desejado e adicionar 1 hora
   const formatDate = () => {
@@ -50,15 +59,6 @@ const Payment = () => {
     setFormattedDate(formatDate());
   }, []);
 
-  useEffect(() => {
-    // Gerar informações das parcelas
-    const info = Array.from({ length: installmentCount }, (_, index) => ({
-      installment: index + 1,
-      value: calculateInstallmentWithInterest(value, interestRate, index + 1),
-    }));
-    setInstallmentsInfo(info);
-  }, [value, installmentCount, interestRate]);
-
   const handleButtonClick = () => {
     router.push(`/payment-card`);
   };
@@ -66,7 +66,11 @@ const Payment = () => {
   return (
     <PaymentContainer>
       <Container>
-        <Header title={`Pague a entrada de ${valueCalculated} pelo Pix`} />
+        <Header
+          title={`Pague a entrada de ${formatCurrency(
+            firstInstallmentValue
+          )} pelo Pix`}
+        />
         <div
           style={{
             height: "332px",
@@ -86,27 +90,35 @@ const Payment = () => {
             <p>Clique para copiar QR CODE</p>
             <Files color="#FFFFFF" size={20} />
           </div>
-          <div className="identifier">
-            <p className="title">Prazo de pagamento:</p>
-            <p className="sub-title">{formattedDate}</p>
-          </div>
+        </div>
+
+        <div className="identifier">
+          <p className="title">Prazo de pagamento:</p>
+          <p className="sub-title">{formattedDate}</p>
         </div>
 
         <div className="installments-section">
-          {installmentsInfo.map((info) => (
-            <div key={info.installment} className="installments-itens">
-              <p>
-                {info.installment}ª parcela no{" "}
-                {info.installment === 1 ? "Pix" : "cartão"}{" "}
-              </p>
-              <span>{valueCalculated}</span>
+          <div className="installments-itens">
+            <div className="pix">
+              <div className="circle-connector">
+                <Circle size={16} color="#03D69D" />
+              </div>
+              <p>1ª entrada no Pix</p>
             </div>
-          ))}
+            <span>{formatCurrency(valueCalculated)}</span>
+          </div>
+          <div className="installments-itens">
+            <div className="pix">
+              <Circle size={16} color="#E5E5E5" />
+              <p>2ª no cartão</p>
+            </div>
+            <span>{formatCurrency(remainingValue)}</span>
+          </div>
         </div>
 
         <div className="section-cet">
           <p>CET: 0,5%</p>
-          <span>Total: {valueTotalCalculated}</span>
+          <span>Total: {formatCurrency(valueTotalCalculated)}</span>
         </div>
 
         <div className="section-cet">
