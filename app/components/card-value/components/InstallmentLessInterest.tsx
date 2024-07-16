@@ -16,7 +16,7 @@ const InstallmentLessInterest = ({
   installment,
   installmentValue,
 }: FullProps) => {
-  const { value, installmentCount, interestRate } = useContext(ValuePixContext);
+  const totalWithInterest = installmentValue * installment;
 
   return (
     <div className="card-full">
@@ -25,16 +25,7 @@ const InstallmentLessInterest = ({
           <p className="title">
             <span>{installment}x</span> {formatCurrency(installmentValue)}
           </p>
-          <p>
-            Total:{" "}
-            {formatCurrency(
-              calculateInstallmentWithInterest(
-                value,
-                interestRate,
-                installmentCount
-              ) * installmentCount
-            )}
-          </p>
+          <p>Total: {formatCurrency(totalWithInterest)}</p>
         </div>
 
         <p className="cashback-value">
