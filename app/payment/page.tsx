@@ -63,7 +63,11 @@ const Payment = () => {
   }, []);
 
   const handleButtonClick = () => {
-    router.push(`/payment-card`);
+    if (installmentCount === 1) {
+      router.push(`/payment-successful`);
+    } else {
+      router.push(`/payment-card`);
+    }
   };
 
   if (loading) {
@@ -74,9 +78,15 @@ const Payment = () => {
     <PaymentContainer>
       <Container>
         <Header
-          title={`Pague a entrada de ${formatCurrency(
-            Number(firstInstallmentValue.toFixed(2))
-          )} pelo Pix`}
+          title={
+            installmentCount === 1
+              ? `Pague o valor de ${formatCurrency(
+                  Number(firstInstallmentValue.toFixed(2))
+                )} no Pix`
+              : `Pague a entrada de ${formatCurrency(
+                  Number(firstInstallmentValue.toFixed(2))
+                )} pelo Pix`
+          }
         />
         <div
           style={{
@@ -107,20 +117,24 @@ const Payment = () => {
         <div className="installments-section">
           <div className="installments-itens">
             <div className="pix">
-              <div className="circle-connector">
+              <div className={installmentCount === 1 ? "" : "circle-connector"}>
                 <Circle size={16} color="#03D69D" />
               </div>
-              <p>1ª entrada no Pix</p>
+              <p>
+                {installmentCount === 1 ? "Valor do Pix" : "1ª entrada no Pix"}
+              </p>
             </div>
             <span>{formatCurrency(valueCalculated)}</span>
           </div>
-          <div className="installments-itens">
-            <div className="pix">
-              <Circle size={16} color="#E5E5E5" />
-              <p>2ª no cartão</p>
+          {installmentCount > 1 && (
+            <div className="installments-itens">
+              <div className="pix">
+                <Circle size={16} color="#E5E5E5" />
+                <p>2ª no cartão</p>
+              </div>
+              <span>{formatCurrency(remainingValue)}</span>
             </div>
-            <span>{formatCurrency(remainingValue)}</span>
-          </div>
+          )}
         </div>
 
         <div className="section-cet">
