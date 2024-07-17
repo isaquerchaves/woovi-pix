@@ -7,6 +7,7 @@ import { ArrowRight } from "lucide-react";
 import CardValue from "../components/card-value/CardValue";
 import Footer from "../components/footer/Footer";
 import { useRouter } from "next/navigation";
+import Loading from "../components/loading/Loading"; // Verifique o caminho do seu componente Loading
 
 const PaymentMethod = () => {
   const router = useRouter();
@@ -14,9 +15,17 @@ const PaymentMethod = () => {
   const [selectedInstallment, setSelectedInstallment] = useState<number | null>(
     null
   );
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+  }, []);
 
   useEffect(() => {
     if (!value) {
+      setLoading(true);
       router.push(`/`);
     }
   }, [value, router]);
@@ -33,22 +42,25 @@ const PaymentMethod = () => {
 
   return (
     <Container>
-      <div>
-        <Header title="Como você quer pagar ?" />
-
-        <CardValue
-          value={value}
-          installments={installments}
-          selectedInstallment={selectedInstallment}
-          setSelectedInstallment={setSelectedInstallment}
-        />
-      </div>
-
-      <Footer />
-
-      <ButtonContainer onClick={handleButtonClick}>
-        <ArrowRight size={25} />
-      </ButtonContainer>
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <div>
+            <Header title="Como você quer pagar ?" />
+            <CardValue
+              value={value}
+              installments={installments}
+              selectedInstallment={selectedInstallment}
+              setSelectedInstallment={setSelectedInstallment}
+            />
+          </div>
+          <Footer />
+          <ButtonContainer onClick={handleButtonClick}>
+            <ArrowRight size={25} />
+          </ButtonContainer>
+        </>
+      )}
     </Container>
   );
 };

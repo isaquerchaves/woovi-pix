@@ -12,6 +12,7 @@ import { ArrowRight, Check, ChevronUp, Circle } from "lucide-react";
 import Footer from "../components/footer/Footer";
 import { PaymentCardContainer } from "./payment-card.style";
 import { PaymentContainer } from "../payment/payment.style";
+import Loading from "../components/loading/Loading";
 
 const PaymentCard = () => {
   const router = useRouter();
@@ -21,13 +22,14 @@ const PaymentCard = () => {
   const [installmentsInfo, setInstallmentsInfo] = useState<
     { installment: number; value: number }[]
   >([]);
+  const [loading, setLoading] = useState(true);
 
-    // Verificar se tem um valor
-    useEffect(() => {
-      if (!value) {
-        router.push(`/`);
-      }
-    }, [value, router])
+  // Verificar se tem um valor
+  useEffect(() => {
+    if (!value) {
+      router.push(`/`);
+    }
+  }, [value, router]);
 
   const [cpf, setCpf] = useState("");
   const [cardNumber, setCardNumber] = useState("");
@@ -74,6 +76,7 @@ const PaymentCard = () => {
 
   useEffect(() => {
     setFormattedDate(formatDate());
+    setTimeout(() => setLoading(false), 1500);
   }, []);
 
   useEffect(() => {
@@ -124,6 +127,10 @@ const PaymentCard = () => {
       );
     }
   };
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <Container>

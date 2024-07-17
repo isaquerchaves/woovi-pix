@@ -12,43 +12,39 @@ import QRCode from "react-qr-code";
 import { ArrowRight, ChevronUp, Circle, Files } from "lucide-react";
 import { PaymentContainer } from "./payment.style";
 import Footer from "../components/footer/Footer";
+import Loading from "../components/loading/Loading"; // Importe o componente de loading
 
 const Payment = () => {
   const router = useRouter();
   const { value, installmentCount, interestRate, updateRemainingValue } =
     useContext(ValuePixContext);
   const [formattedDate, setFormattedDate] = useState("");
+  const [loading, setLoading] = useState(true);
 
-  // Verificar se tem um valor
   useEffect(() => {
     if (!value) {
       router.push(`/`);
     }
   }, [value, router]);
 
-  // Calculo com o valor das parcelas
   const valueCalculated = calculateInstallmentWithInterest(
     value,
     interestRate,
     installmentCount
   );
 
-  // Calculo com valor total
   const valueTotalCalculated =
     calculateInstallmentWithInterest(value, interestRate, installmentCount) *
     installmentCount;
 
-  // Calculo com valor restante
   const remainingValue = valueTotalCalculated - valueCalculated;
-  // Calculo do valor da primeira entrada e do restante
   const firstInstallmentValue = value / installmentCount;
 
-  // Salvar remainingValue no contexto
   useEffect(() => {
     updateRemainingValue(remainingValue);
+    setTimeout(() => setLoading(false), 1500);
   }, [remainingValue, updateRemainingValue]);
 
-  // Função para formatar a data no formato desejado e adicionar 1 hora
   const formatDate = () => {
     const currentDate = new Date();
     currentDate.setHours(currentDate.getHours() + 1);
@@ -70,12 +66,16 @@ const Payment = () => {
     router.push(`/payment-card`);
   };
 
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <PaymentContainer>
       <Container>
         <Header
           title={`Pague a entrada de ${formatCurrency(
-            firstInstallmentValue
+            Number(firstInstallmentValue.toFixed(2))
           )} pelo Pix`}
         />
         <div
