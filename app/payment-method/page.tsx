@@ -1,5 +1,5 @@
 "use client";
-import { useContext, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import Header from "../components/header/header";
 import { ValuePixContext } from "../context/value";
 import { ButtonContainer, Container } from "../(home)/home.style";
@@ -11,6 +11,9 @@ import { useRouter } from "next/navigation";
 const PaymentMethod = () => {
   const router = useRouter();
   const { value, installmentCount } = useContext(ValuePixContext);
+  const [selectedInstallment, setSelectedInstallment] = useState<number | null>(
+    null
+  );
 
   useEffect(() => {
     if (!value) {
@@ -21,7 +24,10 @@ const PaymentMethod = () => {
   const installments = [1, 2, 3, 4, 5, 6, 7];
 
   const handleButtonClick = () => {
-    console.log("Quantidade de parcelas selecionada:", installmentCount);
+    if (selectedInstallment === null) {
+      alert("Por favor, selecione uma opção de parcela.");
+      return;
+    }
     router.push(`/payment`);
   };
 
@@ -30,7 +36,12 @@ const PaymentMethod = () => {
       <div>
         <Header title="Como você quer pagar ?" />
 
-        <CardValue value={value} installments={installments} />
+        <CardValue
+          value={value}
+          installments={installments}
+          selectedInstallment={selectedInstallment}
+          setSelectedInstallment={setSelectedInstallment}
+        />
       </div>
 
       <Footer />

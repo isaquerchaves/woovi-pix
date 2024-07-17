@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import {
   calculateCashback,
   calculateInstallmentWithInterest,
@@ -16,12 +16,16 @@ import { ValuePixContext } from "@/app/context/value";
 interface ValueProps {
   value: number;
   installments: number[];
+  selectedInstallment: number | null;
+  setSelectedInstallment: (installment: number) => void;
 }
 
-const CardValue = ({ value, installments }: ValueProps) => {
-  const [selectedInstallment, setSelectedInstallment] = useState<number | null>(
-    null
-  );
+const CardValue = ({
+  value,
+  installments,
+  selectedInstallment,
+  setSelectedInstallment,
+}: ValueProps) => {
   const { updateInstallmentCount, interestRate } = useContext(ValuePixContext);
 
   // Função para lidar com a seleção de uma parcela
@@ -32,7 +36,6 @@ const CardValue = ({ value, installments }: ValueProps) => {
 
   return (
     <>
-      {/* Container para parcela única */}
       <SingleInstallmentContainer>
         {installments
           .filter((installment) => installment === 1)
