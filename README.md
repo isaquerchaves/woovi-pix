@@ -4,9 +4,8 @@ Este é um pequeno projeto desenvolvido para testar habilidades para a posição
 
 ## 🎥 Demonstração do projeto
 
-Clique na imagem abaixo para assistir à demonstração do projeto:
-
-[![Imagem de capa do vídeo](https://i9.ytimg.com/vi_webp/DBcy07QKErc/mqdefault.webp?sqp=CJi93LQG&rs=AOn4CLBJ8zT_JWti0aAHtqCBWsOm7Wm-Jg)](https://youtu.be/DBcy07QKErc)
+Clique na link para assistir à demonstração do projeto:
+https://youtu.be/DBcy07QKErc
 
 ## ℹ️ Um pouco sobre o projeto:
 - No diretório `app/_context/value.tsx` temos o contexto utilizado em toda aplicação para pode mostrar valores, parcelas e taxa do Pix.
