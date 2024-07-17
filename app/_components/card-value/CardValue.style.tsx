@@ -3,8 +3,7 @@ import styled from "styled-components";
 export const SingleInstallmentContainer = styled.div`
   border: 2px solid #e5e5e5;
   border-radius: 10px;
-  width: 100%;
-  max-width: 429px;
+  width: 370px;
   height: 137px;
   margin-bottom: 2rem;
 `;
@@ -82,17 +81,16 @@ export const Card = styled.div`
 
   & .cashback-value {
     position: relative;
-    width: 100%;
-    max-width: 387px;
     height: 33px;
+    max-width: 389px;
     background-color: #133a6f;
     clip-path: polygon(0 0, 100% 0, 95% 50%, 100% 100%, 0 100%);
     color: white;
     display: flex;
     align-items: center;
+    font-size: 14px;
 
     @media (max-width: 768px) {
-      font-size: 12px;
       padding-left: 5px;
     }
   }

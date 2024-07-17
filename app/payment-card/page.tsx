@@ -161,7 +161,7 @@ const PaymentCard = () => {
           <label>Número do cartão</label>
         </div>
         <div className="vencimento-cvv">
-          <div className="form-field">
+          <div className="form-field-alternative">
             <input
               type="text"
               placeholder=" "
@@ -170,7 +170,7 @@ const PaymentCard = () => {
             />
             <label>Vencimento</label>
           </div>
-          <div className="form-field">
+          <div className="form-field-alternative">
             <input
               type="text"
               placeholder=" "

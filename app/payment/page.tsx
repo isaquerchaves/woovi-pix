@@ -84,7 +84,7 @@ const Payment = () => {
                   Number(firstInstallmentValue.toFixed(2))
                 )} no Pix`
               : `Pague a entrada de ${formatCurrency(
-                  Number(firstInstallmentValue.toFixed(2))
+                  Number(valueCalculated.toFixed(2))
                 )} pelo Pix`
           }
         />
@@ -131,7 +131,11 @@ const Payment = () => {
                 {installmentCount === 1 ? "Valor do Pix" : "1ª entrada no Pix"}
               </p>
             </div>
-            <span>{formatCurrency(valueCalculated)}</span>
+            <span>
+              {installmentCount === 1
+                ? formatCurrency(firstInstallmentValue)
+                : formatCurrency(valueCalculated)}
+            </span>
           </div>
           {installmentCount > 1 && (
             <div className="installments-itens">
@@ -146,7 +150,12 @@ const Payment = () => {
 
         <div className="section-cet">
           <p>CET: 0,5%</p>
-          <span>Total: {formatCurrency(valueTotalCalculated)}</span>
+          <span>
+            Total:{" "}
+            {installmentCount === 1
+              ? formatCurrency(firstInstallmentValue)
+              : formatCurrency(valueTotalCalculated)}
+          </span>
         </div>
 
         <div className="section-cet">

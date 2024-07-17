@@ -51,6 +51,18 @@ export const PaymentCardContainer = styled.div`
 
   .vencimento-cvv {
     display: flex;
+    justify-content: space-between;
     gap: 1rem;
+
+    .form-field-alternative {
+      position: relative;
+      width: 500px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .form-field-alternative {
+      position: relative;
+    }
   }
 `;

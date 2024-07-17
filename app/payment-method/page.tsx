@@ -8,6 +8,7 @@ import CardValue from "../_components/card-value/CardValue";
 import Footer from "../_components/footer/Footer";
 import { useRouter } from "next/navigation";
 import Loading from "../_components/loading/Loading"; // Verifique o caminho do seu componente Loading
+import { PaymentMethodContainer } from "./payment-method.style";
 
 const PaymentMethod = () => {
   const router = useRouter();
@@ -45,7 +46,7 @@ const PaymentMethod = () => {
       {loading ? (
         <Loading />
       ) : (
-        <>
+        <PaymentMethodContainer>
           <div>
             <Header title="Como você quer pagar ?" />
             <CardValue
@@ -59,7 +60,7 @@ const PaymentMethod = () => {
           <ButtonContainer onClick={handleButtonClick}>
             <ArrowRight size={25} />
           </ButtonContainer>
-        </>
+        </PaymentMethodContainer>
       )}
     </Container>
   );
