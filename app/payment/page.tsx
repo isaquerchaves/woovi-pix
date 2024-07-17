@@ -1,18 +1,18 @@
 "use client";
 import React, { useContext, useState, useEffect } from "react";
-import { ValuePixContext } from "../context/value";
+import { ValuePixContext } from "../_context/value";
 import { useRouter } from "next/navigation";
 import { ButtonContainer, Container } from "../(home)/home.style";
-import Header from "../components/header/header";
+import Header from "../_components/header/header";
 import {
   calculateInstallmentWithInterest,
   formatCurrency,
-} from "../helpers/value";
+} from "../_helpers/value";
 import QRCode from "react-qr-code";
 import { ArrowRight, ChevronUp, Circle, Files } from "lucide-react";
 import { PaymentContainer } from "./payment.style";
-import Footer from "../components/footer/Footer";
-import Loading from "../components/loading/Loading";
+import Footer from "../_components/footer/Footer";
+import Loading from "../_components/loading/Loading";
 
 const Payment = () => {
   const router = useRouter();

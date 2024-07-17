@@ -1,18 +1,18 @@
 "use client";
 import { useContext, useEffect, useState } from "react";
 import { ButtonContainer, Container } from "../(home)/home.style";
-import Header from "../components/header/header";
-import { ValuePixContext } from "../context/value";
+import Header from "../_components/header/header";
+import { ValuePixContext } from "../_context/value";
 import {
   calculateInstallmentWithInterest,
   formatCurrency,
-} from "../helpers/value";
+} from "../_helpers/value";
 import { useRouter } from "next/navigation";
 import { ArrowRight, Check, ChevronUp, Circle } from "lucide-react";
-import Footer from "../components/footer/Footer";
+import Footer from "../_components/footer/Footer";
 import { PaymentCardContainer } from "./payment-card.style";
 import { PaymentContainer } from "../payment/payment.style";
-import Loading from "../components/loading/Loading";
+import Loading from "../_components/loading/Loading";
 
 const PaymentCard = () => {
   const router = useRouter();

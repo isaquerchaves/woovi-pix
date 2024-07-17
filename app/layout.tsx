@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ValuePixProvider } from "./context/value";
+import { ValuePixProvider } from "./_context/value";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,11 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-    <body className={inter.className}>
-        <ValuePixProvider>
-            {children}
-        </ValuePixProvider>
-    </body>
-</html>
+      <body className={inter.className}>
+        <ValuePixProvider>{children}</ValuePixProvider>
+      </body>
+    </html>
   );
 }

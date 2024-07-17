@@ -1,13 +1,13 @@
 "use client";
 import { useContext, useState, useEffect } from "react";
-import Header from "../components/header/header";
-import { ValuePixContext } from "../context/value";
+import Header from "../_components/header/header";
+import { ValuePixContext } from "../_context/value";
 import { ButtonContainer, Container } from "../(home)/home.style";
 import { ArrowRight } from "lucide-react";
-import CardValue from "../components/card-value/CardValue";
-import Footer from "../components/footer/Footer";
+import CardValue from "../_components/card-value/CardValue";
+import Footer from "../_components/footer/Footer";
 import { useRouter } from "next/navigation";
-import Loading from "../components/loading/Loading"; // Verifique o caminho do seu componente Loading
+import Loading from "../_components/loading/Loading"; // Verifique o caminho do seu componente Loading
 
 const PaymentMethod = () => {
   const router = useRouter();

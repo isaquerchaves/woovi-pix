@@ -1,13 +1,13 @@
 "use client";
 import { Check } from "lucide-react";
 import { Container } from "../(home)/home.style";
-import Footer from "../components/footer/Footer";
-import Header from "../components/header/header";
+import Footer from "../_components/footer/Footer";
+import Header from "../_components/header/header";
 import { Successful } from "./payment-successful.style";
 import { useContext, useEffect, useState } from "react";
-import { ValuePixContext } from "../context/value";
+import { ValuePixContext } from "../_context/value";
 import { useRouter } from "next/navigation";
-import Loading from "../components/loading/Loading";
+import Loading from "../_components/loading/Loading";
 
 const PaymentSuccessful = () => {
   const router = useRouter();

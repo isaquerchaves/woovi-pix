@@ -2,7 +2,7 @@ import { useContext } from "react";
 import {
   calculateCashback,
   calculateInstallmentWithInterest,
-} from "@/app/helpers/value";
+} from "@/app/_helpers/value";
 import {
   SingleInstallmentContainer,
   CardsContainer,
@@ -11,7 +11,7 @@ import {
 import Full from "./components/Full";
 import Installment from "./components/Installment";
 import InstallmentLessInterest from "./components/InstallmentLessInterest";
-import { ValuePixContext } from "@/app/context/value";
+import { ValuePixContext } from "@/app/_context/value";
 
 interface ValueProps {
   value: number;

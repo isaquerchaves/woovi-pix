@@ -2,8 +2,8 @@ import { useContext } from "react";
 import {
   calculateInstallmentWithInterest,
   formatCurrency,
-} from "@/app/helpers/value";
-import { ValuePixContext } from "@/app/context/value";
+} from "@/app/_helpers/value";
+import { ValuePixContext } from "@/app/_context/value";
 
 interface FullProps {
   index: any;

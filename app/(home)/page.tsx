@@ -1,13 +1,13 @@
 "use client";
 import { useContext, useState, useEffect } from "react";
-import Header from "../components/header/header";
-import { Input } from "../components/input/input";
+import Header from "../_components/header/header";
+import { Input } from "../_components/input/input";
 import { ButtonContainer, Container } from "./home.style";
 import { ArrowRight } from "lucide-react";
-import { ValuePixContext } from "../context/value";
+import { ValuePixContext } from "../_context/value";
 import { useRouter } from "next/navigation";
-import Footer from "../components/footer/Footer";
-import Loading from "../components/loading/Loading";
+import Footer from "../_components/footer/Footer";
+import Loading from "../_components/loading/Loading";
 
 export default function Home() {
   const router = useRouter();
