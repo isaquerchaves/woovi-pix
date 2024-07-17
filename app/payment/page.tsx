@@ -12,7 +12,7 @@ import QRCode from "react-qr-code";
 import { ArrowRight, ChevronUp, Circle, Files } from "lucide-react";
 import { PaymentContainer } from "./payment.style";
 import Footer from "../components/footer/Footer";
-import Loading from "../components/loading/Loading"; // Importe o componente de loading
+import Loading from "../components/loading/Loading";
 
 const Payment = () => {
   const router = useRouter();
@@ -97,7 +97,14 @@ const Payment = () => {
         >
           <QRCode
             size={256}
-            style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+            style={{
+              height: "auto",
+              maxWidth: "100%",
+              width: "100%",
+              borderRadius: "10px",
+              border: "2px solid #03D69D",
+              padding: "10px",
+            }}
             value="web"
             viewBox={`0 0 256 256`}
           />
